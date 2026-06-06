@@ -13,6 +13,7 @@ function App() {
   const [customer, setCustomer] = useState(initialCustomer);
   const [stage, setStage] = useState('menu');
   const [paymentStatus, setPaymentStatus] = useState('idle');
+  const publicPath = import.meta.env.BASE_URL;
 
   const activeRestaurant = useMemo(
     () => restaurants.find((item) => item.id === activeRestaurantId),
@@ -78,7 +79,7 @@ function App() {
       <header className="topbar">
         <div>
           <h1>在线订餐系统</h1>
-          <p>餐厅浏览 · 菜品展示 · 购物车 · 订单确认 · 支付模拟</p>
+          <p>餐厅浏览 · 菜品展示 · 购物车 · 订单确认 · 支付</p>
         </div>
       </header>
 
@@ -119,11 +120,11 @@ function App() {
               <article key={dish.id} className="dish-card">
                 <div className="dish-media">
                   <img
-                    src={`/images/${dish.id}.jpg`}
+                    src={`${publicPath}images/${dish.id}.jpg`}
                     alt={dish.name}
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = '/images/placeholder.svg';
+                      e.target.src = `${publicPath}images/placeholder.svg`;
                     }}
                   />
                 </div>
